@@ -8,11 +8,11 @@ description: Software developers, designers, product owners or business analysts
 
 ##Useful CTC page links
 
-[CTC Traders API Roadmap](https://developer.service.hmrc.gov.uk/roadmaps/common-transit-convention-traders-roadmap/)
+[CTC Traders API Roadmap](/roadmaps/common-transit-convention-traders-roadmap/)
 
-[CTC Traders API Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/common-transit-convention-traders/1.0)
+[CTC Traders API Documentation](/api-documentation/docs/api/service/common-transit-convention-traders/1.0)
 
-[CTC Traders API Service Guide](https://developer.service.hmrc.gov.uk/guides/common-transit-convention-traders-service-guide/)
+[CTC Traders API Service Guide](/guides/common-transit-convention-traders-service-guide/)
 
 ##Introduction
 
@@ -24,7 +24,7 @@ Scroll down the page for further instructions.
 
 ##Before you start
 
-When you are ready to test your software, first read and understand the [CTC Traders API Service Guide](https://developer.service.hmrc.gov.uk/guides/common-transit-convention-traders-service-guide/).
+When you are ready to test your software, first read and understand the [CTC Traders API Service Guide](/guides/common-transit-convention-traders-service-guide/).
 
 We strongly advise you to start testing your software for compatibility purposes as soon as possible.
 
@@ -40,14 +40,14 @@ You can do this by performing a series of compatibility tests on your software u
 
 ##Get set up for testing
 
-1. First **register** for a developer account. You can do this by following the instructions on the [Using the Developer Hub](https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub) page.
-2. [**Sign back in**](https://developer.service.hmrc.gov.uk/developer/login) to the HMRC Developer Hub.
+1. First **register** for a developer account. You can do this by following the instructions on the [Using the Developer Hub](/api-documentation/docs/using-the-hub) page.
+2. [**Sign back in**](/developer/login) to the HMRC Developer Hub.
 3. **Create an application** by going to the Create Test User API.
-4. Then **create another application** by going to the [Common Transit Convention Traders API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/common-transit-convention-traders/1.0).
-5. **Create a user ID and password** for either an [individual](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/api-platform-test-user/1.0#_create-a-test-user-which-is-an-individual_post_accordion) or an [organisation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/api-platform-test-user/1.0#_create-a-test-user-which-is-an-organisation_post_accordion).
+4. Then **create another application** by going to the [Common Transit Convention Traders API](/api-documentation/docs/api/service/common-transit-convention-traders/1.0).
+5. **Create a user ID and password** for either an [individual](/api-documentation/docs/api/service/api-platform-test-user/1.0#_create-a-test-user-which-is-an-individual_post_accordion) or an [organisation](/api-documentation/docs/api/service/api-platform-test-user/1.0#_create-a-test-user-which-is-an-organisation_post_accordion).
 6. **Subscribe to our Common Transit Convention Traders API** on the Developer Hub under the section called Your Specific Applications.
 7. **Create a Client ID and Client Secret.**
-8. Use the [Create Test User API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/api-platform-test-user/1.0) to **generate a new test user**. Ensure that the test user has the correct enrolment by including the following request body in the call to the Create Test User API:
+8. Use the [Create Test User API](/api-documentation/docs/api/service/api-platform-test-user/1.0) to **generate a new test user**. Ensure that the test user has the correct enrolment by including the following request body in the call to the Create Test User API:
 
     ```json
     {   
@@ -82,7 +82,7 @@ If you want to use the XML directly, you can extract these from the files found 
 
 **Note**: if your endpoint is hosted by Amazon Web Services (AWS) then you must either use [edge-optimised custom domain names](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-edge-optimized-custom-domain-name.html) or [regional custom domain names](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-regional-api-custom-domain-create.html).
 
-When testing your software, you can be sent automatic notifications using the [Push Pull Notifications API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/push-pull-notifications-api/1.0).
+When testing your software, you can be sent automatic notifications using the [Push Pull Notifications API](/api-documentation/docs/api/service/push-pull-notifications-api/1.0).
 
 This is where notifications from NCTS are sent  to your software in near real time.
 
@@ -132,7 +132,7 @@ The following example push notification shows how the XML is not embedded in the
 
 Performance tests indicate that messages up to 4.9MB in size are likely to be delivered successfully and receive the expected asynchronous responses from NCTS. However, if you are expecting an IE016 message in response, depending on the number of errors encountered within a message, it might take up to 5 minutes for the message to arrive.
 
-**Note**: For large messages, consider making use of the [push-pull notifications API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/push-pull-notifications-api/1.0) to have automatic notifications sent from NCTS in near real time. (See [How to test for push pull notifications](#how-to-test-for-push-pull-notifications).)
+**Note**: For large messages, consider making use of the [push-pull notifications API](/api-documentation/docs/api/service/push-pull-notifications-api/1.0) to have automatic notifications sent from NCTS in near real time. (See [How to test for push pull notifications](#how-to-test-for-push-pull-notifications).)
 
 ## Example IE044 message scenarios
 
@@ -154,7 +154,7 @@ This example file illustrates the situation when a new item is reported: <a href
 ## Submit your results
 
 Once you are satisfied with your tests and are confident that your software is fully compatible with our API:
- - log all your evidence and results by filling in all the sections of this [checklist form](https://developer.service.hmrc.gov.uk/guides/common-transit-convention-traders-testing-guide/figures/CTC_Traders_API_Application_for_Productions_Credentials.docx) (this is a Word document which will download). You must also answer all the questions at the end of the checklist.
+ - log all your evidence and results by filling in all the sections of this [checklist form](/guides/common-transit-convention-traders-testing-guide/figures/CTC_Traders_API_Application_for_Productions_Credentials.docx) (this is a Word document which will download). You must also answer all the questions at the end of the checklist.
  - when ready, email your completed form to [SDSTeam@hmrc.gov.uk](mailto:SDSTeam@hmrc.gov.uk)
  - we’ll check your test evidence using the information you give on this form.
  - when we are satisfied that you have done enough testing, you will be granted access to the live API system.
@@ -185,8 +185,8 @@ If you have found a bug in our code, you can get in touch with our developers di
 
 ##Useful CTC page links
 
-[CTC Traders API Roadmap](https://developer.service.hmrc.gov.uk/roadmaps/common-transit-convention-traders-roadmap/)
+[CTC Traders API Roadmap](/roadmaps/common-transit-convention-traders-roadmap/)
 
-[CTC Traders API Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/common-transit-convention-traders/1.0)
+[CTC Traders API Documentation](/api-documentation/docs/api/service/common-transit-convention-traders/1.0)
 
-[CTC Traders API Service Guide](https://developer.service.hmrc.gov.uk/guides/common-transit-convention-traders-service-guide/)
+[CTC Traders API Service Guide](/guides/common-transit-convention-traders-service-guide/)
