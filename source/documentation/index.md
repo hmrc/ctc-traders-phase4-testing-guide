@@ -12,7 +12,7 @@ description: Software developers, designers, product owners or business analysts
 
 [CTC Traders API Documentation](/api-documentation/docs/api/service/common-transit-convention-traders/1.0)
 
-[CTC Traders API Service Guide](/guides/common-transit-convention-traders-service-guide/)
+[CTC Traders API Service Guide](/guides/ctc-traders-phase4-service-guide/)
 
 ##Introduction
 
@@ -154,7 +154,7 @@ This example file illustrates the situation when a new item is reported: <a href
 ## Submit your results
 
 Once you are satisfied with your tests and are confident that your software is fully compatible with our API:
- - log all your evidence and results by filling in all the sections of this [checklist form](/guides/common-transit-convention-traders-testing-guide/figures/CTC_Traders_API_Application_for_Productions_Credentials.docx) (this is a Word document which will download). You must also answer all the questions at the end of the checklist.
+ - log all your evidence and results by filling in all the sections of this [checklist form](/guides/ctc-traders-phase4-testing-guide/figures/CTC_Traders_API_Application_for_Productions_Credentials.docx) (this is a Word document which will download). You must also answer all the questions at the end of the checklist.
  - when ready, email your completed form to [SDSTeam@hmrc.gov.uk](mailto:SDSTeam@hmrc.gov.uk)
  - we’ll check your test evidence using the information you give on this form.
  - when we are satisfied that you have done enough testing, you will be granted access to the live API system.
@@ -189,4 +189,4 @@ If you have found a bug in our code, you can get in touch with our developers di
 
 [CTC Traders API Documentation](/api-documentation/docs/api/service/common-transit-convention-traders/1.0)
 
-[CTC Traders API Service Guide](/guides/common-transit-convention-traders-service-guide/)
+[CTC Traders API Service Guide](/guides/ctc-traders-phase4-service-guide/)
