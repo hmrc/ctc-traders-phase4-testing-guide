@@ -150,6 +150,86 @@ This example file illustrates the situation when a good item has some difference
 
 This example file illustrates the situation when a new item is reported: <a href="figures/IE44_New Item Found In GoodItem.txt" download>IE44_New Item Found In GoodItem.txt</a>
 
+## Ensure Guarantee Service error list
+
+**Note:** These errors are seen only in the event of 400 Bad Request responses. 
+
+For each error produced by the Ensure Guarantee Service, the following table lists the expected cause and the recommended action. 
+
+<table>
+    <tr>
+        <th>Error message</th>
+        <th>Expected cause</th>
+        <th>Suggested action</th>
+    </tr>
+    <tr>
+        <td>Amount cannot be equal to or less than 0</td>
+        <td>Special Mention (SPEMENMT2) matched with guarantee reference has an amount equal to or less than 0</td>
+        <td>Ensure that all Special Mention fields (SPEMENMT2) regarding guarantees have an amount that is greater than 0</td>
+    </tr>
+     <tr>
+        <td>Departure Empty</td>
+        <td>Office of Departure field (“CUSOFFDEPEPT" \ "RefNumEPT1”) has no value</td>
+        <td>Ensure that the CUSOFFDEPEPT \ RefNumEPT1 field has a value</td>
+    </tr>
+    <tr>
+        <td>Destination Empty</td>
+        <td>Office of Destination field (”CUSOFFDESEST" \ "RefNumEST1”) has no value</td>
+        <td>Ensure that the CUSOFFDESEST \ RefNumEST1 field has a value</td>
+    </tr>
+    <tr>
+        <td>GuaRefNumGRNREF1 was empty</td>
+        <td>One of the guarantees with a type of 0, 1, 2, 4 or 9 has no “GuaRefNumGRNREF1” field or field value</td>
+        <td>Ensure that the guarantees of types 0, 1, 2, 4 or 9 have a correctly populated GuaRefNumGRNREF1 field</td>
+    </tr>
+    <tr>
+        <td>GuaTypGUA1 was invalid</td>
+        <td>One of the guarantees found has no guarantee type</td>
+        <td>Ensure that the GuaTypGUA1 field on all guarantees is populated</td>
+    </tr>
+    <tr>
+        <td>GuaTypGUA1 was not a valid type</td>
+        <td>One of the guarantees found has a guarantee type that is not recognised (we support '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', and ‘B’)</td>
+        <td>Ensure that the GuaTypGUA1 field on all guarantees uses a supported code (supported codes are: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A or B)</td>
+    </tr>
+    <tr>
+        <td>GuaTypGUA1 was too long</td>
+        <td>One of the guarantees found has a guarantee type with more than one digit/character</td>
+        <td>Ensure that the GuaTypGUA1 field on all guarantees has only one digit or character (supported codes are: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A or B)</td>
+    </tr>
+    <tr>
+        <td>Inappropriate Departure Office</td>
+        <td>A value in the Office of Departure field (“CUSOFFDEPEPT \ RefNumEPT1”) has been parsed that starts with neither an "XI" nor a "GB" and therefore is not supported by the CTC service</td>
+        <td>Ensure that the CUSOFFDEPEPT \ RefNumEPT1 field has the correct office code and is from GB or NI (it should start with "GB" or "XI" as appropriate)</td>
+    </tr>
+    <tr>
+        <td>Invalid Item Number</td>
+        <td>A goods item (GOOITEGDS) has an item number (IteNumGDS7) that is not a valid integer</td>
+        <td>Ensure that all Goods Items (GOOITEGDS) have Item Number (IteNumGDS7) fields populated with integers</td>
+    </tr>
+    <tr>
+        <td>Missing Item Number</td>
+        <td>A goods item (GOOITEGDS) is missing an item number (IteNumGDS7)</td>
+        <td>Ensure that all Goods Items (GOOITEGDS) have an Item Number (IteNumGDS7) field populated</td>
+    </tr>
+    <tr>
+        <td>OthGuaRefREF4 was empty</td>
+        <td>One of the guarantees with a type of 3, 5, 6, 7, 8, A or B has no “OthGuaRefREF4” field or field value</td>
+        <td>Ensure that the all guarantees of types 3, 5, 6, 7, 8, A or B have a correctly populated OthGuaRefREF4 field</td>
+    </tr>
+    <tr>
+        <td>Parsed Amount value without currency</td>
+        <td>Special Mention (SPEMENMT2) matched with guarantee reference has an amount value but no currency</td>
+        <td>Ensure that all Special Mention fields (SPEMENMT2) regarding guarantees are correctly populated with an amount value and currency</td>
+    </tr>
+    <tr>
+        <td>Transformation impossible with provided xml</td>
+        <td>An unexpected error has happened when trying to apply the default guarantee requirement for this declaration</td>
+        <td>Ensure that the guarantee information has been applied and resubmit. If the problem persists, forward the XML to the Software Developer Support Team for investigation by the development team</td>
+    </tr>
+</table>
+
+**Note:** For Software Developer Support Team contact details, see [Get support](#get-support).
  
 ## Submit your results
 
@@ -159,7 +239,7 @@ Once you are satisfied with your tests and are confident that your software is f
  - we’ll check your test evidence using the information you give on this form.
  - when we are satisfied that you have done enough testing, you will be granted access to the live API system.
 
-##Get support
+## Get support
 
 ###General support for development and testing
 
