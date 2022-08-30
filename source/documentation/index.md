@@ -6,15 +6,15 @@ description: Software developers, designers, product owners or business analysts
 
 # CTC Traders phase 4 testing guide
 
-##Useful CTC page links
+## Useful CTC page links
 
 [CTC Traders API Roadmap](/roadmaps/common-transit-convention-traders-roadmap/)
 
 [CTC Traders API Documentation](/api-documentation/docs/api/service/common-transit-convention-traders/1.0)
 
-[CTC Traders API Service Guide](/guides/common-transit-convention-traders-service-guide/)
+[CTC Traders API Service Guide](/guides/ctc-traders-phase4-service-guide/)
 
-##Introduction
+## Introduction
 
 This guidance page signposts software developers to essential information and materials.
 
@@ -22,13 +22,13 @@ This is needed when testing to check your software is compatible and will work w
 
 Scroll down the page for further instructions.
 
-##Before you start
+## Before you start
 
 When you are ready to test your software, first read and understand the [CTC Traders API Service Guide](/guides/common-transit-convention-traders-service-guide/).
 
 We strongly advise you to start testing your software for compatibility purposes as soon as possible.
 
-##What is Trader Test?
+## What is Trader Test?
 
 **Before you can get access to the live production environment, you must check that your software is fully compatible with our CTC Traders API.**
 
@@ -38,7 +38,7 @@ When your testing requires a manual response, they will perform the live manual 
 
 You can do this by performing a series of compatibility tests on your software using our sandbox environment. This is a replica of the live production environment. You’ll also need to do some sample scenarios and test data for both Great Britain and Northern Ireland.
 
-##Get set up for testing
+## Get set up for testing
 
 1. First **register** for a developer account. You can do this by following the instructions on the [Using the Developer Hub](/api-documentation/docs/using-the-hub) page.
 2. [**Sign back in**](/developer/login) to the HMRC Developer Hub.
@@ -58,7 +58,7 @@ You can do this by performing a series of compatibility tests on your software u
     ```
 9. You will also need to access and use the [NCTS Trader Test Access and Channels](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/940784/NCTS_Trader_Test_Access_Channels_and_Support_v1.1.pdf) reference guide (ODT document opens and downloads). You will need this guide to help you navigate between the old XML based system and our new API.
 
-##How to test your software
+## How to test your software
 
 First, download the latest [CTC Traders API Test Pack](https://www.gov.uk/government/publications/new-computerised-transit-system-technical-specifications) to test your software is compatible with our API.
 
@@ -72,13 +72,13 @@ You can use the following cURL commands to simulate:
 
  - your software application’s actions and messages
  - the actions and messages that would come back from the NCTS
- 
+
 If you want to use the XML directly, you can extract these from the files found in the Github repository either by using:
 
  - Postman for the [Postman collection](https://github.com/hmrc/common-transit-convention-traders-postman/tree/master/Collections)
  - Text editor for [all files](https://github.com/hmrc/common-transit-convention-traders-postman/)
 
-##How to test for push pull notifications
+## How to test for push pull notifications
 
 **Note**: if your endpoint is hosted by Amazon Web Services (AWS) then you must either use [edge-optimised custom domain names](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-edge-optimized-custom-domain-name.html) or [regional custom domain names](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-regional-api-custom-domain-create.html).
 
@@ -91,20 +91,20 @@ To get these automatic messages, you must:
  - subscribe to the Push Pull Notifications service
  - subscribe to the CTC Traders API in the sandbox environment
  - configure the notification URL in the subscription configuration section of Developer Hub:
- 
+
  ![NotificationWebAddress](/figures/notification_url_subscription.png)
 
 To subscribe to the Push Pull Notifications service, go to Developer Hub.
 
  ![Subscription](/figures/Push_Pull_Notification_switch.png)
- 
-###How it works
+
+### How it works
 
 This diagram shows an example of the process where your service needs to return a 200 HTTP status as part of the automated notification process.
 
 ![Push Message From NCTS](/figures/Push_NCTS_Diagram.png)
 
-###Examples of Push Notification XML
+### Examples of Push Notification XML
 
 The following example push notification shows how to embed the XML body within JSON for messages that are small enough to include in the notification:
 
@@ -127,7 +127,7 @@ The following example push notification shows how the XML is not embedded in the
        "status":"PENDING",
        "createdDateTime":"2022-03-03T15:58:28.485+0000"
     }
-    
+
 ## Message size considerations
 
 Performance tests indicate that messages up to 4.9MB in size are likely to be delivered successfully and receive the expected asynchronous responses from NCTS. However, if you are expecting an IE016 message in response, depending on the number of errors encountered within a message, it might take up to 5 minutes for the message to arrive.
@@ -150,22 +150,103 @@ This example file illustrates the situation when a good item has some difference
 
 This example file illustrates the situation when a new item is reported: <a href="figures/IE44_New Item Found In GoodItem.txt" download>IE44_New Item Found In GoodItem.txt</a>
 
- 
+## Ensure Guarantee Service error list
+
+**Note:** These errors are seen only in the event of 400 Bad Request responses. 
+
+For each error produced by the Ensure Guarantee Service, the following table lists the expected cause and the recommended action. 
+
+<table>
+    <tr>
+        <th>Error message</th>
+        <th>Expected cause</th>
+        <th>Suggested action</th>
+    </tr>
+    <tr>
+        <td>Amount cannot be equal to or less than 0</td>
+        <td>Special Mention (SPEMENMT2) matched with guarantee reference has an amount equal to or less than 0</td>
+        <td>Ensure that all Special Mention fields (SPEMENMT2) regarding guarantees have an amount that is greater than 0</td>
+    </tr>
+     <tr>
+        <td>Departure Empty</td>
+        <td>Office of Departure field (“CUSOFFDEPEPT" \ "RefNumEPT1”) has no value</td>
+        <td>Ensure that the CUSOFFDEPEPT \ RefNumEPT1 field has a value</td>
+    </tr>
+    <tr>
+        <td>Destination Empty</td>
+        <td>Office of Destination field (”CUSOFFDESEST" \ "RefNumEST1”) has no value</td>
+        <td>Ensure that the CUSOFFDESEST \ RefNumEST1 field has a value</td>
+    </tr>
+    <tr>
+        <td>GuaRefNumGRNREF1 was empty</td>
+        <td>One of the guarantees with a type of 0, 1, 2, 4 or 9 has no “GuaRefNumGRNREF1” field or field value</td>
+        <td>Ensure that the guarantees of types 0, 1, 2, 4 or 9 have a correctly populated GuaRefNumGRNREF1 field</td>
+    </tr>
+    <tr>
+        <td>GuaTypGUA1 was invalid</td>
+        <td>One of the guarantees found has no guarantee type</td>
+        <td>Ensure that the GuaTypGUA1 field on all guarantees is populated</td>
+    </tr>
+    <tr>
+        <td>GuaTypGUA1 was not a valid type</td>
+        <td>One of the guarantees found has a guarantee type that is not recognised (we support '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', and ‘B’)</td>
+        <td>Ensure that the GuaTypGUA1 field on all guarantees uses a supported code (supported codes are: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A or B)</td>
+    </tr>
+    <tr>
+        <td>GuaTypGUA1 was too long</td>
+        <td>One of the guarantees found has a guarantee type with more than one digit/character</td>
+        <td>Ensure that the GuaTypGUA1 field on all guarantees has only one digit or character (supported codes are: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A or B)</td>
+    </tr>
+    <tr>
+        <td>Inappropriate Departure Office</td>
+        <td>A value in the Office of Departure field (“CUSOFFDEPEPT \ RefNumEPT1”) has been parsed that starts with neither an "XI" nor a "GB" and therefore is not supported by the CTC service</td>
+        <td>Ensure that the CUSOFFDEPEPT \ RefNumEPT1 field has the correct office code and is from GB or NI (it should start with "GB" or "XI" as appropriate)</td>
+    </tr>
+    <tr>
+        <td>Invalid Item Number</td>
+        <td>A goods item (GOOITEGDS) has an item number (IteNumGDS7) that is not a valid integer</td>
+        <td>Ensure that all Goods Items (GOOITEGDS) have Item Number (IteNumGDS7) fields populated with integers</td>
+    </tr>
+    <tr>
+        <td>Missing Item Number</td>
+        <td>A goods item (GOOITEGDS) is missing an item number (IteNumGDS7)</td>
+        <td>Ensure that all Goods Items (GOOITEGDS) have an Item Number (IteNumGDS7) field populated</td>
+    </tr>
+    <tr>
+        <td>OthGuaRefREF4 was empty</td>
+        <td>One of the guarantees with a type of 3, 5, 6, 7, 8, A or B has no “OthGuaRefREF4” field or field value</td>
+        <td>Ensure that the all guarantees of types 3, 5, 6, 7, 8, A or B have a correctly populated OthGuaRefREF4 field</td>
+    </tr>
+    <tr>
+        <td>Parsed Amount value without currency</td>
+        <td>Special Mention (SPEMENMT2) matched with guarantee reference has an amount value but no currency</td>
+        <td>Ensure that all Special Mention fields (SPEMENMT2) regarding guarantees are correctly populated with an amount value and currency</td>
+    </tr>
+    <tr>
+        <td>Transformation impossible with provided xml</td>
+        <td>An unexpected error has happened when trying to apply the default guarantee requirement for this declaration</td>
+        <td>Ensure that the guarantee information has been applied and resubmit. If the problem persists, forward the XML to the Software Developer Support Team for investigation by the development team</td>
+    </tr>
+</table>
+
+**Note:** For Software Developer Support Team contact details, see [Get support](#get-support).
+
 ## Submit your results
 
 Once you are satisfied with your tests and are confident that your software is fully compatible with our API:
- - log all your evidence and results by filling in all the sections of this [checklist form](/guides/common-transit-convention-traders-testing-guide/figures/CTC_Traders_API_Application_for_Productions_Credentials.docx) (this is a Word document which will download). You must also answer all the questions at the end of the checklist.
- - when ready, email your completed form to [SDSTeam@hmrc.gov.uk](mailto:SDSTeam@hmrc.gov.uk)
- - we’ll check your test evidence using the information you give on this form.
- - when we are satisfied that you have done enough testing, you will be granted access to the live API system.
 
-##Get support
+- log all your evidence and results by filling in all the sections of this [checklist form](/guides/ctc-traders-phase4-testing-guide/figures/CTC_Traders_API_Application_for_Productions_Credentials_v0.1_Aug22.docx) (this is a Word document which will download). You must also answer all the questions at the end of the checklist.
+- when ready, email your completed form to [SDSTeam@hmrc.gov.uk](mailto:SDSTeam@hmrc.gov.uk)
+- we’ll check your test evidence using the information you give on this form.
+- when we are satisfied that you have done enough testing, you will be granted access to the live API system.
 
-###General support for development and testing
+## Get support
+
+### General support for development and testing
 
 Email our Software Developer Support Team at [SDSTeam@hmrc.gov.uk](mailto:SDSTeam@hmrc.gov.uk) if you have any questions or difficulties or need additional clarification on this testing process. 
 
-###Support for Trader Test
+### Support for Trader Test
 
 While using the Trader Test service, you may need to request a manual intervention from Trader Test support. 
 
@@ -173,20 +254,20 @@ You can find more information about this in the [NCTS Access and Channels docume
 
 Please note - it can take 24 hours to get a response.
 
-###Support for live user issues
+### Support for live user issues
 
 Once your software is live, your point of contact is the NCTS helpdesk - [ncts.helpdesk@hmrc.gov.uk](mailto:ncts.helpdesk@hmrc.gov.uk) or **0300 322 7095**.
 
 It can help with all user issues such as access and enrolment.
 
-###Finding a bug
+### Finding a bug
 
 If you have found a bug in our code, you can get in touch with our developers directly on our [Github issues page](https://github.com/hmrc/common-transit-convention-traders/issues).
 
-##Useful CTC page links
+## Useful CTC page links
 
 [CTC Traders API Roadmap](/roadmaps/common-transit-convention-traders-roadmap/)
 
 [CTC Traders API Documentation](/api-documentation/docs/api/service/common-transit-convention-traders/1.0)
 
-[CTC Traders API Service Guide](/guides/common-transit-convention-traders-service-guide/)
+[CTC Traders API Service Guide](/guides/ctc-traders-phase4-service-guide/)
