@@ -234,6 +234,7 @@ For each error produced by the Ensure Guarantee Service, the following table lis
 ## Submit your results
 
 Once you are satisfied with your tests and are confident that your software is fully compatible with our API:
+
 - log all your evidence and results by filling in all the sections of this [checklist form](/guides/ctc-traders-phase4-testing-guide/figures/CTC_Traders_API_Application_for_Productions_Credentials_v0.1_Aug22.docx) (this is a Word document which will download). You must also answer all the questions at the end of the checklist.
 - when ready, email your completed form to [SDSTeam@hmrc.gov.uk](mailto:SDSTeam@hmrc.gov.uk)
 - we’ll check your test evidence using the information you give on this form.
