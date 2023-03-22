@@ -2,7 +2,7 @@ import play.sbt.PlayImport._
 import sbt._
 
 object AppDependencies {
-  val bootStrapPlayVersion = "5.12.0"
+  val bootStrapPlayVersion = "7.13.0"
 
   val compile: Seq[ModuleID] = Seq(
     ws,
@@ -10,6 +10,7 @@ object AppDependencies {
 
   val test: Seq[ModuleID] = Seq(
     "org.scalatest" %% "scalatest" % "3.2.9" % "test",
-    "com.vladsch.flexmark" % "flexmark-all" % "0.36.8" % "test"
+    "com.vladsch.flexmark" % "flexmark-all" % "0.36.8" % "test",
+    "uk.gov.hmrc"         %% "bootstrap-test-play-28" % bootStrapPlayVersion % "test"
   )
 }
