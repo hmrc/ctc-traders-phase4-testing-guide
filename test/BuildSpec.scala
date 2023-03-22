@@ -16,9 +16,11 @@
 
 package test
 
-import sys.process._
-import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+
+import scala.language.postfixOps
+import scala.sys.process._
 
 class BuildSpec extends AnyWordSpec with Matchers {
   "Building the content" should {
