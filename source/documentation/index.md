@@ -130,9 +130,11 @@ The following example push notification shows how the XML is not embedded in the
 
 ## Message size considerations
 
+You can use this version of the API to send messages up to 4.9MB in size. Larger messages will be rejected with an HTTP 413 (Request Entity Too Large) status code.
+
 Performance tests indicate that messages up to 4.9MB in size are likely to be delivered successfully and receive the expected asynchronous responses from NCTS. However, if you are expecting an IE016 message in response, depending on the number of errors encountered within a message, it might take up to 5 minutes for the message to arrive.
 
-**Note**: For large messages, consider making use of the [push-pull notifications API](/api-documentation/docs/api/service/push-pull-notifications-api/1.0) to have automatic notifications sent from NCTS in near real time. (See [How to test for push pull notifications](#how-to-test-for-push-pull-notifications).)
+**Note**: For larger messages (up to 4.9MB in size), consider making use of the [Push Pull notifications API](/api-documentation/docs/api/service/push-pull-notifications-api/1.0) to have automatic notifications sent from NCTS in near real time. (See [How to test for push pull notifications](#how-to-test-for-push-pull-notifications).)
 
 ## Example IE044 message scenarios
 
